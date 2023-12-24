@@ -23,6 +23,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     public GameObject roomBrowserScreen;
     public RoomButtonScript roomButton;
     private List<RoomButtonScript> allRoomButtons = new List<RoomButtonScript>();
+
+    public GameObject startGameButton;
     
     void Awake()    
     {
@@ -152,6 +154,15 @@ public class Launcher : MonoBehaviourPunCallbacks
         roomNameText.text = "Room " + PhotonNetwork.CurrentRoom.Name;
         
         ListAllPlayers();
+
+        if(PhotonNetwork.IsMasterClient)
+        {
+            startGameButton.SetActive(true);
+        }
+        else
+        {
+            startGameButton.SetActive(false);
+        }
     }
 
     public void ListAllPlayers()
