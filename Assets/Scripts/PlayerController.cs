@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
+using Photon.Pun;
 
 
-public class PlayerController : MonoBehaviour
+
+public class PlayerController : MonoBehaviourPunCallbacks
 {
     public Transform viewPoint;
     public float mouseSens = 1f;
@@ -217,14 +219,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.other.CompareTag("Ground"))
+        if (collision.rigidbody.CompareTag("Ground"))
         {
             isGrounded = true;
         }
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.other.CompareTag("Ground"))
+        if (collision.rigidbody.CompareTag("Ground"))
         {
             isGrounded = false;
         }
